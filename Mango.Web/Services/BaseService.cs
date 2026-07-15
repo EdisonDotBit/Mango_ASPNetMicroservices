@@ -22,7 +22,7 @@ namespace Mango.Web.Services
             message.Headers.Add("Accept", "application/json");
             //token
 
-            message.RequestUri = new Uri (requestDto.Url);
+            message.RequestUri = new Uri (_httpClient.BaseAddress, requestDto.Url);
             if(requestDto.Data != null)
             {
                 message.Content = new StringContent(JsonConvert.SerializeObject(requestDto.Data), Encoding.UTF8, "application/json");
