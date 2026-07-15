@@ -9,16 +9,15 @@ namespace Mango.Web.Services
 {
     public class BaseService : IBaseService
     {
-        private readonly IHttpClientFactory _httpClient;
+        private readonly HttpClient _httpClient;
 
-        public BaseService(IHttpClientFactory httpClient)
+        public BaseService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-        } 
+        }
 
         public async Task<ResponseDto?> SendAsync(RequestDto requestDto)
         {
-            HttpClient client = _httpClient.CreateClient("MangoAPI");
             HttpRequestMessage message = new HttpRequestMessage();
             message.Headers.Add("Accept", "application/json");
             //token
@@ -47,7 +46,7 @@ namespace Mango.Web.Services
 
             HttpResponseMessage? apiResponse = null;
 
-            apiResponse = await client.SendAsync(message);
+            apiResponse = await _httpClient.SendAsync(message);
 
             switch(apiResponse.StatusCode)
             {
