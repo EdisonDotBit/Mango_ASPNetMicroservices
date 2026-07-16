@@ -6,10 +6,11 @@ namespace Mango.Web.Services.IService
     {
         Task<ResponseDto?> GetAllCouponsAsync();
         Task<ResponseDto?> GetCouponByIdAsync(int id);
-        Task<ResponseDto?> GetCouponByCodeAsync(string couponCode);
+        Task<ResponseDto?> GetCouponByCodeAsync(string code);
         Task<ResponseDto?> CreateCouponAsync(CouponDto couponDto);
-        Task<ResponseDto?> UpdateCouponAsync(CouponDto token);
+        Task<ResponseDto?> UpdateCouponAsync(CouponDto couponDto);
         Task<ResponseDto?> DeleteCouponAsync(int id);
 
     }
 }
+    

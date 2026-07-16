@@ -1,11 +1,25 @@
+using Mango.Web.Services;
+using Mango.Web.Services.IService;
+using Mango.Web.Utility;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+
+SD.CouponAPIBase = builder.Configuration["ServiceUrls:CouponAPI"];
+builder.Services.AddHttpClient<ICouponService, CouponService>(client => 
+{
+    client.BaseAddress = new Uri(SD.CouponAPIBase);
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+builder.Services.AddScoped<IBaseService, BaseService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline.s
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
