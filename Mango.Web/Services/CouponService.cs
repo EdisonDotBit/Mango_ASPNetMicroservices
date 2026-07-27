@@ -18,7 +18,7 @@ namespace Mango.Web.Services
                 Url = "/api/coupon",
             });
         }
-
+    
         public async Task<ResponseDto?> GetCouponByIdAsync(int id)
         {
             return await SendAsync(new RequestDto
